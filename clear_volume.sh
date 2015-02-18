@@ -3,10 +3,12 @@
 # for safety: https://sipb.mit.edu/doc/safe-shell/
 set -euf -o pipefail
 
-read -p "This will permanently delete all files on Video A. Are you sure? [yN] " -n 1 -r
+VOLUME_PATH="/Volumes/${VOLUME_NAME}"
+
+read -p "This will permanently delete all files on ${VOLUME_PATH}. Are you sure? [yN] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  diskutil reformat /Volumes/Video\ A
+  diskutil reformat ${VOLUME_PATH}
 else
   echo "OK, doing nothing."
 fi
@@ -14,5 +16,5 @@ fi
 echo
 echo "Finished. Current space on Video A:"
 
-df -h /Volumes/Video\ A/
-diskutil unmount  /Volumes/Video\ A
+df -h ${VOLUME_PATH}
+diskutil unmount ${VOLUME_PATH}
