@@ -29,3 +29,9 @@ echo "Finished. Current space on Video ${VOLUME_PATH}:"
 
 df -h ${VOLUME_PATH}
 diskutil unmount ${VOLUME_PATH}
+
+EXIT_CODE=$?
+if [[ $EXIT_CODE != 0 ]]; then
+  echo "====== WARNING: Disk not ejected ======"
+  exit $EXIT_CODE
+fi
