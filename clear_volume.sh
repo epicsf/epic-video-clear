@@ -16,7 +16,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   exit
 fi
 
-diskutil reformat ${VOLUME_PATH}
+diskutil reformat "$VOLUME_PATH"
 
 EXIT_CODE=$?
 if [[ $EXIT_CODE != 0 ]]; then
@@ -27,8 +27,8 @@ fi
 echo
 echo "Finished. Current space on Video ${DISK_LETTER}:"
 
-df -h ${VOLUME_PATH}
-diskutil unmount ${VOLUME_PATH}
+df -h "$VOLUME_PATH"
+diskutil unmount "$VOLUME_PATH"
 
 EXIT_CODE=$?
 if [[ $EXIT_CODE != 0 ]]; then
