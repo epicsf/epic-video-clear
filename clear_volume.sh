@@ -11,10 +11,9 @@ VOLUME_PATH="/Volumes/Video ${DISK_LETTER}"
 
 read -p "This will permanently delete all files on ${VOLUME_PATH}. Are you sure? [yN] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  diskutil reformat ${VOLUME_PATH}
-else
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   echo "OK, doing nothing."
+  exit
 fi
 
 echo
