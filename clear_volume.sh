@@ -25,7 +25,7 @@ if [[ $EXIT_CODE != 0 ]]; then
 fi
 
 echo
-echo "Finished. Current space on Video ${VOLUME_PATH}:"
+echo "Finished. Current space on Video ${DISK_LETTER}:"
 
 df -h ${VOLUME_PATH}
 diskutil unmount ${VOLUME_PATH}
