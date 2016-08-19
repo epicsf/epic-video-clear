@@ -3,7 +3,11 @@
 # for safety: https://sipb.mit.edu/doc/safe-shell/
 set -euf -o pipefail
 
-VOLUME_PATH="/Volumes/${VOLUME_NAME}"
+read -p "Enter the disk letter to clear: " -n 1 -r
+
+DISK_LETTER=$(echo "$REPLY" | tr '[:lower:]' '[:upper:]')
+
+VOLUME_PATH="/Volumes/Video ${DISK_LETTER}"
 
 read -p "This will permanently delete all files on ${VOLUME_PATH}. Are you sure? [yN] " -n 1 -r
 echo
