@@ -14,7 +14,7 @@ else
 fi
 
 echo
-echo "Finished. Current space on Video A:"
+echo "Finished. Current space on Video ${VOLUME_PATH}:"
 
 df -h ${VOLUME_PATH}
 diskutil unmount ${VOLUME_PATH}
