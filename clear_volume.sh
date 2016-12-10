@@ -3,6 +3,9 @@
 # for safety: https://sipb.mit.edu/doc/safe-shell/
 set -uf -o pipefail
 
+echo
+echo
+
 while true do
 
   read -p "Enter the disk letter to clear: " -n 1 -r
