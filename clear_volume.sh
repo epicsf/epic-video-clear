@@ -4,7 +4,6 @@
 set -uf -o pipefail
 
 echo
-echo
 
 while true; do
 
@@ -18,7 +17,7 @@ while true; do
   echo
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo "OK, doing nothing."
-    exit
+    continue
   fi
 
   diskutil reformat "$VOLUME_PATH"
@@ -26,7 +25,7 @@ while true; do
   EXIT_CODE=$?
   if [[ $EXIT_CODE != 0 ]]; then
     echo "====== WARNING: Disk not cleared ======"
-    exit $EXIT_CODE
+    continue
   fi
 
   echo
@@ -38,7 +37,7 @@ while true; do
   EXIT_CODE=$?
   if [[ $EXIT_CODE != 0 ]]; then
     echo "====== WARNING: Disk not ejected ======"
-    exit $EXIT_CODE
+    continue
   fi
 
   echo
