@@ -3,9 +3,11 @@
 # for safety: https://sipb.mit.edu/doc/safe-shell/
 set -uf -o pipefail
 
-echo
-
 while true; do
+
+  echo
+  echo "================================================================================"
+  echo
 
   read -p "Enter the disk letter to clear: " -n 1 -r
   echo
@@ -39,9 +41,5 @@ while true; do
     echo "====== WARNING: Disk not ejected ======"
     continue
   fi
-
-  echo
-  echo "================================================================================"
-  echo
 
 done
