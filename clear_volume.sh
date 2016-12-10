@@ -3,35 +3,43 @@
 # for safety: https://sipb.mit.edu/doc/safe-shell/
 set -uf -o pipefail
 
-read -p "Enter the disk letter to clear: " -n 1 -r
-echo
+while true do
 
-DISK_LETTER=$(echo "$REPLY" | tr '[:lower:]' '[:upper:]')
-VOLUME_PATH="/Volumes/Video ${DISK_LETTER}"
+  read -p "Enter the disk letter to clear: " -n 1 -r
+  echo
 
-read -p "This will permanently delete all files on \"${VOLUME_PATH}\". Proceed? [yN] " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-  echo "OK, doing nothing."
-  exit
-fi
+  DISK_LETTER=$(echo "$REPLY" | tr '[:lower:]' '[:upper:]')
+  VOLUME_PATH="/Volumes/Video ${DISK_LETTER}"
 
-diskutil reformat "$VOLUME_PATH"
+  read -p "This will permanently delete all files on \"${VOLUME_PATH}\". Proceed? [yN] " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "OK, doing nothing."
+    exit
+  fi
 
-EXIT_CODE=$?
-if [[ $EXIT_CODE != 0 ]]; then
-  echo "====== WARNING: Disk not cleared ======"
-  exit $EXIT_CODE
-fi
+  diskutil reformat "$VOLUME_PATH"
 
-echo
-echo "Finished. Current space on Video ${DISK_LETTER}:"
+  EXIT_CODE=$?
+  if [[ $EXIT_CODE != 0 ]]; then
+    echo "====== WARNING: Disk not cleared ======"
+    exit $EXIT_CODE
+  fi
 
-df -h "$VOLUME_PATH"
-diskutil unmount "$VOLUME_PATH"
+  echo
+  echo "Finished. Current space on Video ${DISK_LETTER}:"
 
-EXIT_CODE=$?
-if [[ $EXIT_CODE != 0 ]]; then
-  echo "====== WARNING: Disk not ejected ======"
-  exit $EXIT_CODE
-fi
+  df -h "$VOLUME_PATH"
+  diskutil unmount "$VOLUME_PATH"
+
+  EXIT_CODE=$?
+  if [[ $EXIT_CODE != 0 ]]; then
+    echo "====== WARNING: Disk not ejected ======"
+    exit $EXIT_CODE
+  fi
+
+  echo
+  echo "================================================================================"
+  echo
+
+done
