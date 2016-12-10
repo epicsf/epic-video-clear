@@ -6,7 +6,7 @@ set -uf -o pipefail
 echo
 echo
 
-while true do
+while true; do
 
   read -p "Enter the disk letter to clear: " -n 1 -r
   echo
