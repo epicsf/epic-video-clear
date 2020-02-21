@@ -36,6 +36,10 @@ while true; do
     continue
   fi
 
+  touch "${VOLUME_PATH}/FILE NAMING CONVENTION"
+  touch "${VOLUME_PATH}/No need to rename backup recording files"
+  touch "${VOLUME_PATH}/YYYY-MM-DD HHHH N"
+
   echo
   echo "Finished. Current space on Video ${DISK_LETTER}:"
 
